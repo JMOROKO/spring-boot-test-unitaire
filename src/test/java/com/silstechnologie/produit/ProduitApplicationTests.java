@@ -63,4 +63,23 @@ class ProduitApplicationTests {
             System.out.println(p);
         }
     }
+
+    @Test
+    public void testFindProduitByNom(){
+        List<Produit> prods = produitRepository.findByNomProduit("COCA COLA");
+
+        for(Produit p : prods){
+            System.out.println(p);
+        }
+    }
+
+    @Test
+    public void testFindProduitByNomContains(){
+        List<Produit> prods = produitRepository.findByNomProduitContains("COCA");
+
+        for(Produit p : prods){
+            System.out.println(p);
+        }
+    }
+
 }
