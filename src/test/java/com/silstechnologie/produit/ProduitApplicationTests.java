@@ -1,5 +1,6 @@
 package com.silstechnologie.produit;
 
+import com.silstechnologie.produit.entities.Categorie;
 import com.silstechnologie.produit.entities.Produit;
 import com.silstechnologie.produit.repositories.ProduitRepository;
 import org.assertj.core.api.Assertions;
@@ -76,6 +77,46 @@ class ProduitApplicationTests {
     @Test
     public void testFindProduitByNomContains(){
         List<Produit> prods = produitRepository.findByNomProduitContains("COCA");
+
+        for(Produit p : prods){
+            System.out.println(p);
+        }
+    }
+
+    @Test
+    public void testFindProduitByNomPrix(){
+        List<Produit> prods = produitRepository.findByNomPrix("COCA COLA", 1000.00);
+
+        for(Produit p : prods){
+            System.out.println(p);
+        }
+    }
+
+    @Test
+    public void testFindByCategorie(){
+        Categorie cat = new Categorie();
+        cat.setId(1L);
+
+        List<Produit> prods = produitRepository.findByCategorie(cat);
+
+        for(Produit p : prods){
+            System.out.println(p);
+        }
+    }
+    @Test
+    public void testFindByCategorieId(){
+
+        List<Produit> prods = produitRepository.findByCategorieId(1L);
+
+        for(Produit p : prods){
+            System.out.println(p);
+        }
+    }
+
+    @Test
+    public void testFindByOrderByNomProduitAsc(){
+
+        List<Produit> prods = produitRepository.findByOrderByNomProduitAsc();
 
         for(Produit p : prods){
             System.out.println(p);

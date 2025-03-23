@@ -1,8 +1,10 @@
 package com.silstechnologie.produit.repositories;
 
+import com.silstechnologie.produit.entities.Categorie;
 import com.silstechnologie.produit.entities.Produit;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,6 +23,10 @@ public interface ProduitRepository extends JpaRepository<Produit, Long> {
     @Query("select p from Produit p where p.nomProduit like :nom and p.prixProduit > :prix")
     List<Produit> findByNomPrix(String nom, Double prix);
 
+    @Query("select p from Produit p where p.categorie = :categorie")
+    List<Produit> findByCategorie(@Param("categorie") Categorie categorie);
 
+    List<Produit> findByCategorieId(Long id);
 
+    List<Produit> findByOrderByNomProduitAsc();
 }
